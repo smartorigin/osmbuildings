@@ -1,4 +1,31 @@
-<img src="http://osmbuildings.org/logo.svg" width="100" height="88">
+<div style="text-align:center;">
+
+	<img src="http://smart-origin.com/images/so_logo_or_seul.png" height="73px">
+
+</div>
+
+
+# OSM Buildings for ArcGIS
+
+This project is a fork of OSM Buildings JavaScript library for visualizing OpenStreetMap buildings into ArcGIS Api for Javascript 3.x.
+
+The library is composed of three main components : 
+
+- OSMBuildings original api from [kekscom](https://github.com/kekscom/osmbuildings)
+- An interface to this api (ie adapter) named [ExternalInterface.js](https://github.com/smartorigin/osmbuildings/tree/so/arcgis/src/engines/ExternalInterface.js)
+- A custom ArcGIS for Javascript Layer named [OSMBuildingsLayerForArcGIS](https://github.com/smartorigin/osmbuildings/tree/so/arcgis/src/engines/OSMBuildingsLayerForArcGIS.js)
+
+The build process have been changed to support AMD loader, and especially dojo loader
+
+Feel free to contact us for details and informations (usage, bugs, etc) at contact@smart-origin.com or via github.
+
+
+# About OSM Buildings
+
+<div style="text-align:center;">
+	<img src="http://osmbuildings.org/logo.svg" width="100" height="88">
+</div>
+
 
 OSM Buildings is a JavaScript library for visualizing OpenStreetMap building geometry on interactive maps.
 
@@ -26,9 +53,38 @@ It's safe use the [master branch](https://github.com/kekscom/osmbuildings/tree/m
 For further information visit http://osmbuildings.org, follow [@osmbuildings](https://twitter.com/osmbuildings/) on Twitter or report issues [here on Github](https://github.com/kekscom/osmbuildings/issues/).
 
 
-## Documentation
+# Documentation
 
-### Integration with Leaflet
+## Integration with ArcGIS
+
+Declare a new package in your dojoConfig package information
+
+	{name:'osmb-so', location:'osmbuildings-smartorigin/dist'}
+  
+Create a new layer and add it to the map
+  
+    define(["esri/map","osmb-so/OSMBuildingsLayerForArcGIS", "dojo/domReady!"], function (Map, OSMBuildingsLayerForArcGIS) {
+      var map = new Map("map-area", {
+        basemap: "streets",
+        center: [5.72909, 45.18968],
+        zoom:20
+      });
+      
+      map.on('load', function() {
+        try
+        {
+          map.addLayer(new OSMBuildingsLayerForArcGIS());
+        }
+        catch(error)
+        {
+          console.error('Unable to add OSMBuildings layer', error);
+        }
+    
+      });
+    });
+
+
+## Integration with Leaflet
 
 Link Leaflet and OSM Buildings files in your HTML head section.
 
@@ -89,7 +145,7 @@ new OSMBuildings(map).set(geoJSON);
 ~~~
 
 
-### Integration with OpenLayers
+## Integration with OpenLayers
 
 Link OpenLayers and OSM Buildings files in your HTML head section.
 
@@ -127,9 +183,9 @@ new OSMBuildings(map).load();
 ~~~
 
 
-## API
+# API
 
-### Constructors
+## Constructors
 
 <table>
 <tr>
@@ -237,9 +293,9 @@ Styles
 </table>
 
 
-## Data
+# Data
 
-### OSM Tags used
+## OSM Tags used
 
 <table>
 <tr>
@@ -292,3 +348,25 @@ Styles
 <td>roof:height</td>
 </tr>
 </table>
+
+
+# Developpers
+
+## Configure your environment
+
+    npm install
+  
+## Build for your environment
+  
+Edit config.js and choose which adapter you want to build
+  
+    exports.engines = ['Leaflet', 'OpenLayers', 'OL3', 'ExternalInterface'];
+  
+For building ArcGIS adapter, please edit config.js and choose prefix_amd and suffix_amd as replacement of prefix and suffix in library
+
+  
+Goto build folder :  
+  
+    sh build-debug.sh #for debug version only
+    sh build.sh
+

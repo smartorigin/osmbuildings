@@ -3,15 +3,17 @@ var srcPath = '../src';
 var dstPath = '../dist';
 
 exports.COPYRIGHT = '/**\n' +
-                    ' * Copyright (C) 2015 OSM Buildings, Jan Marsch\n' +
+										' * Copyright (C) 2015 Smart Origin SARL, for portions OSMBuildingsLayerForArcGIS and ExternalInterface in binary distribution\n' +
+										' * A JavaScript library for visualizing OSM buildings geometry into ArcGIS for JavaScript API 3.x.\n' +
+										' * Copyright (C) 2015 OSM Buildings, Jan Marsch for project OSM Buildings\n' +
                     ' * A JavaScript library for visualizing building geometry on interactive maps.\n' +
                     ' * @osmbuildings, http://osmbuildings.org\n' +
                     ' */\n';
 
-exports.VERSION = '0.2.2b';
+exports.VERSION = '0.2.3b';
 
 exports.srcFiles = [
-  srcPath + '/prefix.js',
+  srcPath + '/prefix_amd.js',
   srcPath + '/shortcuts.js',
   srcPath + '/../node_modules/color/dist/Color.debug.js',
   srcPath + '/lib/SunPosition.js',
@@ -33,7 +35,7 @@ exports.srcFiles = [
   srcPath + '/adapter.js',
   srcPath + '/engines/{engine}.js',
   srcPath + '/public.js',
-  srcPath + '/suffix.js'
+  srcPath + '/suffix_amd.js'
 ];
 
 exports.dstFiles = {
@@ -42,12 +44,12 @@ exports.dstFiles = {
   gzipped:  dstPath + '/OSMBuildings-{engine}.js.gz'
 };
 
-exports.engines = ['Leaflet', 'OpenLayers', 'OL3'];
+exports.engines = ['ExternalInterface'];
 
 exports.jshint = {
 	"browser": true,
 	"node": true,
-	"predef": ["L", "OpenLayers", 'ol'],
+	"predef": ["define", "L", "OpenLayers", 'ol'],
 //"unused": true,
 
 	"debug": false,

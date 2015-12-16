@@ -25,7 +25,7 @@ exports.watch = function(files, callback) {
             timer = setTimeout(callback, 500);
         });
     }
-}
+};
 
 exports.read = function(file) {
 	return fs.readFileSync(file, 'utf8');
@@ -39,6 +39,10 @@ exports.combine = function(files) {
 	var str, res = '';
 	for (var i = 0, il = files.length; i < il; i++) {
 		str = this.read(files[i]);
+
+    str = str.replace(/debugger/g,'');
+
+
 		res += '//****** file: ' + path.basename(files[i]) + ' ******\n\n';
 		res += str + '\n\n';
 	}

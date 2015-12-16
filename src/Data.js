@@ -95,7 +95,7 @@ var Data = {
     var color;
 
     if (item.wallColor) {
-      if ((color = Color.parse(item.wallColor))) {
+      if ((color = new Color(item.wallColor))) {
         color = color.alpha(ZOOM_FACTOR);
         res.altColor  = ''+ color.lightness(0.8);
         res.wallColor = ''+ color;
@@ -103,7 +103,7 @@ var Data = {
     }
 
     if (item.roofColor) {
-      if ((color = Color.parse(item.roofColor))) {
+      if ((color = new Color(item.roofColor))) {
         res.roofColor = ''+ color.alpha(ZOOM_FACTOR);
       }
     }
@@ -152,7 +152,7 @@ var Data = {
 
     var
       tileZoom = 16,
-      tileSize = 256,
+      tileSize = MAP_TILE_SIZE,
       zoomedTileSize = ZOOM > tileZoom ? tileSize <<(ZOOM-tileZoom) : tileSize >>(tileZoom-ZOOM),
       minX = ORIGIN_X/zoomedTileSize <<0,
       minY = ORIGIN_Y/zoomedTileSize <<0,

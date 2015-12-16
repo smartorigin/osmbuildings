@@ -22,7 +22,7 @@ var
   CENTER_X = 0, CENTER_Y = 0,
   ORIGIN_X = 0, ORIGIN_Y = 0,
 
-  WALL_COLOR = Color.parse('rgba(200, 190, 180)'),
+  WALL_COLOR = new Color('rgba(200, 190, 180)'),
   ALT_COLOR  = WALL_COLOR.lightness(0.8),
   ROOF_COLOR = WALL_COLOR.lightness(1.2),
 

@@ -77,7 +77,7 @@ function start() {
 
     config.srcFiles[index] = filePattern.replace(/{engine}/, engine);
 
-    js = config.COPYRIGHT + builder.combine(config.srcFiles, engine);
+    js = config.COPYRIGHT + builder.combine(config.srcFiles, engine, options.debug);
     js = builder.setVars(js, { version: config.VERSION }, options.debug);
 
     if (!options.debug && !builder.jshint(js, config.jshint, options.debug)) {

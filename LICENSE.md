@@ -1,4 +1,5 @@
-Copyright (c) 2015, OSM Buildings, Jan Marsch <mail@osmbuildings.org>
+Copyright for portions OSMBuildingsLayerForArcGIS and ExternalInterface in src/engines are held by Smart Origin, 2015. 
+All other copyright for project OSM Buildings are held by OSM Buildings, Jan Marsch <mail@osmbuildings.org>, 2015.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are

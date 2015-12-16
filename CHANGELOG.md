@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.3b @ 2015-12-16
+
+**Features**
+
+- Add new Adapter ExternalInterface
+- Add an ArcGIS for javascript 3.x layer implementation (OSMBuildingsLayerForArcGIS)
+
+**Fixes**
+
+- build remove debugger statements before hinting
+- use new Color function instead of Color.parse
+
 ## 0.2.2b @ 2014-11-25
 
 **Features**
