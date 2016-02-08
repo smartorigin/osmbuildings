@@ -196,7 +196,12 @@ define(['dojo/_base/declare', "dojo/_base/lang", 'dojo/_base/array', 'dojo/dom-c
              this._connects.push(map.on('zoom-start', lang.hitch(this, this._onZoomStart)));
              return element;
            },
-           // esri.layers.Layer.method
+           /**
+            * Unset map
+            * @param map
+            * @param container
+            * @private
+            */
            _unsetMap: function (map, container)
            {
              if (this._externalInterface)
@@ -215,6 +220,11 @@ define(['dojo/_base/declare', "dojo/_base/lang", 'dojo/_base/array', 'dojo/dom-c
              this._map     = null;
              this._element = null;
            },
+           /**
+            * Init the layer draw metadata
+            * @param json
+            * @private
+            */
            _initLayer: function (json)
            {
              //dojo.mixin(this, json);
