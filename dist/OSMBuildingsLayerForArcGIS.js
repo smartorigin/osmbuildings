@@ -63,6 +63,7 @@ define(['dojo/_base/declare', "dojo/_base/lang", 'dojo/_base/array', 'dojo/dom-c
             * @name BuildingsLayerOptions
             * @class This is an object literal that specify the options for each BuildingsLayer.
             * @property {string} heightAttribute required. name of the attribute for height;
+            * @property {Number} minZoom used to show OSMBuildings data - 18 by default
             * @property {number} [defaultHeight] optional. default Height to use if the height value is 0. default=0;
             * @property {number} [heightScaleRatio] optional. number used to multiple the value from service. default=1;
             * @property {number} [extentScaleRatio] optional. extra buffer on map extent to load features to reduce server traffic. default=1.5;
@@ -97,7 +98,7 @@ define(['dojo/_base/declare', "dojo/_base/lang", 'dojo/_base/array', 'dojo/dom-c
              this._externalInterface = new ExternalInterface();
 
              /* Apply MIN ZOOM */
-             this._externalInterface.setMinZoom(18);
+             this._externalInterface.setMinZoom(opts.minZoom || 18);
              /* Apply default style */
              this._applyStyle(opts.style);
 
@@ -196,7 +197,12 @@ define(['dojo/_base/declare', "dojo/_base/lang", 'dojo/_base/array', 'dojo/dom-c
              this._connects.push(map.on('zoom-start', lang.hitch(this, this._onZoomStart)));
              return element;
            },
-           // esri.layers.Layer.method
+           /**
+            * Unset map
+            * @param map
+            * @param container
+            * @private
+            */
            _unsetMap: function (map, container)
            {
              if (this._externalInterface)
@@ -215,6 +221,11 @@ define(['dojo/_base/declare', "dojo/_base/lang", 'dojo/_base/array', 'dojo/dom-c
              this._map     = null;
              this._element = null;
            },
+           /**
+            * Init the layer draw metadata
+            * @param json
+            * @private
+            */
            _initLayer: function (json)
            {
              //dojo.mixin(this, json);

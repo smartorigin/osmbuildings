@@ -63,6 +63,7 @@ define(['dojo/_base/declare', "dojo/_base/lang", 'dojo/_base/array', 'dojo/dom-c
             * @name BuildingsLayerOptions
             * @class This is an object literal that specify the options for each BuildingsLayer.
             * @property {string} heightAttribute required. name of the attribute for height;
+            * @property {Number} minZoom used to show OSMBuildings data - 18 by default
             * @property {number} [defaultHeight] optional. default Height to use if the height value is 0. default=0;
             * @property {number} [heightScaleRatio] optional. number used to multiple the value from service. default=1;
             * @property {number} [extentScaleRatio] optional. extra buffer on map extent to load features to reduce server traffic. default=1.5;
@@ -97,7 +98,7 @@ define(['dojo/_base/declare', "dojo/_base/lang", 'dojo/_base/array', 'dojo/dom-c
              this._externalInterface = new ExternalInterface();
 
              /* Apply MIN ZOOM */
-             this._externalInterface.setMinZoom(18);
+             this._externalInterface.setMinZoom(opts.minZoom || 18);
              /* Apply default style */
              this._applyStyle(opts.style);
 
